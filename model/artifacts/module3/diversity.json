@@ -1,0 +1,10 @@
+{
+  "users": 5000,
+  "intra_list_diversity": 0.037035,
+  "catalogue_coverage": 0.206623,
+  "mean_distinct_categories": 1.0302,
+  "mean_category_ratio": 0.05151,
+  "mean_distinct_brands": 1.5532,
+  "mean_brand_ratio": 0.07766,
+  "novelty_bits": 16.677053
+}
