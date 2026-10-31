@@ -1,0 +1,7 @@
+streamlit
+pandas
+plotly
+pyodbc
+requests
+azure-identity
+streamlit-autorefresh
