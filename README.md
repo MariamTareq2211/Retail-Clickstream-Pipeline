@@ -187,6 +187,10 @@ streamlit run app/dashboard.py --server.port 8501
 * **Access Dashboard**: Open your browser to `http://localhost:8501`
 
 ---
+## Author
+
+**Youssef Mahmoud Abu Ali** — Machine Learning
+Dataset: REES46 eCommerce Clickstream
 
 ### Key Dashboard Features
 1. **Real-time API Connection Status**: Indicates live connectivity to the FastAPI inference engine.
