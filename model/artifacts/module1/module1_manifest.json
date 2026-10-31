@@ -1,0 +1,42 @@
+{
+  "stage": "module1_preprocess",
+  "created_at": "2026-10-29T00:06:41.515426+00:00",
+  "config_fingerprint": "30b2b1c6ce2db62c75538a06bdc903ed46f612d509fb2aa2ec80d04d4cffbf64",
+  "seed": 42,
+  "catalogue_products": 117286,
+  "train_products_with_interactions": 106481,
+  "timestamp_column": "event_ts",
+  "timings_seconds": {
+    "load": 11.557,
+    "validate": 8.025,
+    "deduplicate": 27.742,
+    "split": 25.79,
+    "text_features": 4.625,
+    "price_features": 0.04,
+    "fuse_features": 0.057
+  },
+  "artifacts": [
+    {
+      "file": "item_matrix.npz",
+      "sha256": "4c4417e8228ea6f7e2bbe8e7f0d81ab5b2c4d3525211ea7039d21f81cda7345f"
+    },
+    {
+      "file": "item_index.parquet",
+      "sha256": "d02b1c71b7fa42385314538c56b1c70ab55643a34bb0ce8ae38848171c270eb7"
+    },
+    {
+      "file": "tfidf_vectorizer.joblib",
+      "sha256": "c2a5271791e50705e13860e59549110b0c7ee1d6a76bff51d9d1d2768bd2ea7f"
+    },
+    {
+      "file": "price_transformer.joblib",
+      "sha256": "9960b301b8eb781771f7ae90a8572742dd811752aa9c662b12ca4d83872b287b"
+    }
+  ],
+  "environment": {
+    "pandas": "3.1.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "scikit_learn": "1.9.1"
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "deduplication": {
+    "grain": "timestamped",
+    "rows_in": 8248730,
+    "rows_out": 8248119,
+    "rows_removed": 611,
+    "duplicate_ratio": 7.4e-05,
+    "mean_interaction_count": 1.0001,
+    "max_interaction_count": 5,
+    "p99_interaction_count": 1.0
+  },
+  "split": {
+    "mode": "quantile",
+    "ratios": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "cutoffs": {
+      "mode": "quantile",
+      "train_end": "2019-10-05T18:10:47+00:00",
+      "val_end": "2019-10-06T18:15:32+00:00"
+    },
+    "splits": {
+      "train": {
+        "events": 5773678,
+        "share_of_events_pct": 69.9999,
+        "users": 709231,
+        "items": 106481,
+        "start": "2019-10-01T00:00:00+00:00",
+        "end": "2019-10-05T18:10:46+00:00",
+        "event_type_share_pct": {
+          "1": 94.5725,
+          "2": 3.0286,
+          "4": 2.399
+        }
+      },
+      "val": {
+        "events": 1237217,
+        "share_of_events_pct": 15.0,
+        "users": 191141,
+        "items": 67026,
+        "start": "2019-10-05T18:10:47+00:00",
+        "end": "2019-10-06T18:15:31+00:00",
+        "event_type_share_pct": {
+          "1": 95.4116,
+          "2": 2.9054,
+          "4": 1.6831
+        }
+      },
+      "test": {
+        "events": 1237224,
+        "share_of_events_pct": 15.0001,
+        "users": 197717,
+        "items": 70295,
+        "start": "2019-10-06T18:15:32+00:00",
+        "end": "2019-10-07T23:59:59+00:00",
+        "event_type_share_pct": {
+          "1": 96.3873,
+          "2": 1.8892,
+          "4": 1.7235
+        }
+      }
+    },
+    "cold_start_vs_train": {
+      "val": {
+        "users_unseen_in_train": 117029,
+        "users_unseen_in_train_pct": 61.2265,
+        "items_unseen_in_train": 4317,
+        "items_unseen_in_train_pct": 6.4408,
+        "events_on_unseen_items_pct": 0.613,
+        "events_on_unseen_users_pct": 51.1037
+      },
+      "test": {
+        "users_unseen_in_train": 126979,
+        "users_unseen_in_train_pct": 64.2226,
+        "items_unseen_in_train": 5996,
+        "items_unseen_in_train_pct": 8.5298,
+        "events_on_unseen_items_pct": 1.1118,
+        "events_on_unseen_users_pct": 55.4882
+      }
+    },
+    "integrity": {
+      "temporally_disjoint": true,
+      "train_end_observed": "2019-10-05T18:10:46+00:00",
+      "val_start_observed": "2019-10-05T18:10:47+00:00"
+    }
+  },
+  "validation": {
+    "products": {
+      "stage": "products",
+      "ok": true,
+      "checks": [
+        {
+          "name": "row_count",
+          "status": "pass",
+          "detail": "117,286 product rows."
+        },
+        {
+          "name": "unique_product_id",
+          "status": "pass",
+          "detail": "0 duplicated product identifiers."
+        },
+        {
+          "name": "placeholder_removed",
+          "status": "pass",
+          "detail": "0 rows with product_id = -1 (placeholder must be removed upstream)."
+        },
+        {
+          "name": "null_product_id",
+          "status": "pass",
+          "detail": "0 null ids."
+        },
+        {
+          "name": "negative_price",
+          "status": "pass",
+          "detail": "0 negative prices."
+        },
+        {
+          "name": "null_price",
+          "status": "pass",
+          "detail": "0 null prices (imputed from the train median)."
+        },
+        {
+          "name": "text_null_category_level1",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "text_unknown_share_category_level1",
+          "status": "pass",
+          "detail": "53.38% encoded as 'Unknown'."
+        },
+        {
+          "name": "text_null_category_level2",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "text_unknown_share_category_level2",
+          "status": "pass",
+          "detail": "53.38% encoded as 'Unknown'."
+        },
+        {
+          "name": "text_null_category_level3",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "text_unknown_share_category_level3",
+          "status": "pass",
+          "detail": "74.25% encoded as 'Unknown'."
+        },
+        {
+          "name": "text_null_brand",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "text_unknown_share_brand",
+          "status": "pass",
+          "detail": "25.49% encoded as 'Unknown'."
+        },
+        {
+          "name": "price_distribution",
+          "status": "pass",
+          "detail": "min=0.79, median=75.25, max=2,574.07, skew=3.64."
+        }
+      ]
+    },
+    "events": {
+      "stage": "events",
+      "ok": true,
+      "checks": [
+        {
+          "name": "row_count",
+          "status": "pass",
+          "detail": "8,248,730 raw interaction rows."
+        },
+        {
+          "name": "null_user_key",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "null_product_id",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "null_event_type_key",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "null_event_ts",
+          "status": "pass",
+          "detail": "0 null values."
+        },
+        {
+          "name": "exact_duplicate_rows",
+          "status": "pass",
+          "detail": "611 exact duplicates (0.01%), collapsed by the deduplication stage."
+        },
+        {
+          "name": "referential_integrity",
+          "status": "pass",
+          "detail": "Every event references a catalogue product."
+        },
+        {
+          "name": "event_type_distribution",
+          "status": "pass",
+          "detail": "1: 94.97%, 2: 2.84%, 4: 2.19%"
+        },
+        {
+          "name": "timestamp_range",
+          "status": "pass",
+          "detail": "2019-10-01 00:00:00+00:00 -> 2019-10-07 23:59:59+00:00 (UTC)."
+        },
+        {
+          "name": "unique_users_products",
+          "status": "pass",
+          "detail": "940,426 users, 115,543 products."
+        }
+      ]
+    }
+  }
+}
