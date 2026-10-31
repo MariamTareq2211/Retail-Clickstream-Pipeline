@@ -1,0 +1,79 @@
+{
+  "stage": "module3_predict",
+  "created_at": "2026-10-29T00:53:37.465880+00:00",
+  "config_fingerprint": "e7e9ed3c238fc12d33a2de98ff71600287bd7299d2be72479b4d9a425df2091d",
+  "module2_config_fingerprint": "e7e9ed3c238fc12d33a2de98ff71600287bd7299d2be72479b4d9a425df2091d",
+  "module1_config_fingerprint": "30b2b1c6ce2db62c75538a06bdc903ed46f612d509fb2aa2ec80d04d4cffbf64",
+  "seed": 42,
+  "evaluation_split": "test",
+  "selected_model": "decayed",
+  "scored_users": 60373,
+  "users_sampled": 70738,
+  "recommendation_users_exported": 5000,
+  "recommendation_rows": 100000,
+  "metrics": {
+    "5": {
+      "k": 5,
+      "users": 60373,
+      "hit_rate": 0.036622,
+      "recall": 0.017586,
+      "precision": 0.008666,
+      "mrr": 0.019672,
+      "coverage": 0.33362
+    },
+    "10": {
+      "k": 10,
+      "users": 60373,
+      "hit_rate": 0.05688,
+      "recall": 0.028161,
+      "precision": 0.007353,
+      "mrr": 0.022327,
+      "coverage": 0.47582
+    },
+    "20": {
+      "k": 20,
+      "users": 60373,
+      "hit_rate": 0.086711,
+      "recall": 0.04544,
+      "precision": 0.006327,
+      "mrr": 0.024368,
+      "coverage": 0.618224
+    }
+  },
+  "diversity": {
+    "users": 5000,
+    "intra_list_diversity": 0.037035,
+    "catalogue_coverage": 0.206623,
+    "mean_distinct_categories": 1.0302,
+    "mean_category_ratio": 0.05151,
+    "mean_distinct_brands": 1.5532,
+    "mean_brand_ratio": 0.07766,
+    "novelty_bits": 16.677053
+  },
+  "timings_seconds": {
+    "load": 1.531,
+    "select": 11.648,
+    "rank": 461.413,
+    "evaluate": 19.917,
+    "diversity": 4.302
+  },
+  "artifacts": [
+    {
+      "file": "recommendations.parquet",
+      "sha256": "d5fef9eed63d9710d0f04387336db1cb474be7defe529718c426854a3233efa6"
+    },
+    {
+      "file": "evaluation.json",
+      "sha256": "efeff1d89b275ed3bddb85a13c0b566444a7acf4a7b0b703afaaf2fe23649e34"
+    },
+    {
+      "file": "diversity.json",
+      "sha256": "240af4e1f32876caf5cf37c095b0a5593c84114285979a8d9d478da40d1a3e9c"
+    }
+  ],
+  "environment": {
+    "pandas": "3.1.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  }
+}
