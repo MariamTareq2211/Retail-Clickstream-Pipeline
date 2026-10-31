@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+1. فريق المنتجات وتجربة المستخدم (Product & UX / Funnel):
+* Session Count
+* Funnel Conversion Rate
+* Drop-off Rate per Stage
+* % Cart Abandonment
+* Session Dwell Time
+* Events per Session
+* Time to First Cart
+
+2. الإدارة العليا والتسويق (Executive & Marketing):
+* Revenue
+* Orders
+* Average Order Value (AOV)
+* Daily Views & Purchases
+* Traffic Heatmap
+* Revenue & Conversion per Channel
+* Sessions per Channel
+* New vs Returning Users & Repeat Rates
+
+3. فريق إدارة المنتجات والكتالوج (Merchandising / Category):
+* Views / Carts / Purchases per Product & Category
+* View-to-Cart & View-to-Purchase Rates
+* High Views, Low Sales List
+* Price Band Distribution & Conversion
+* Brand Attention vs Purchase Share
+--------------------------------------------------------------------------------
