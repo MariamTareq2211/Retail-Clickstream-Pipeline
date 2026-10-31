@@ -5,3 +5,5 @@ pyodbc
 requests
 azure-identity
 streamlit-autorefresh
+psycopg
+

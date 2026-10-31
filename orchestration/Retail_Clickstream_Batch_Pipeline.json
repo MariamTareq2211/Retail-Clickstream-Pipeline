@@ -1,0 +1,360 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "MicrosoftOutlook 2401526 (2)": {
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "Retail_Clickstream_Batch_Pipeline",
+      "type": "pipelines",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "activities": [
+          {
+            "name": "nb_gate_landing",
+            "type": "TridentNotebook",
+            "dependsOn": [],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 2,
+              "retryIntervalInSeconds": 300,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "38b6e26b-ba11-4a2c-a9b1-011b47cd585c",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_bronze_batch_ingest",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_7",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "074242b4-d3d4-4b20-ad9e-4970ff26f293",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_bronze_split",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_2",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "386e37a8-c979-4d17-ae9e-34f90661bbbb",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_silver_events",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_4",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "16a42c07-bd4d-400a-8547-91586022d6cd",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_silver_product",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_3",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "f844d3ba-d0c3-4c4e-882b-310d7d10631d",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_gate_silver",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_5",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 2,
+              "retryIntervalInSeconds": 300,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "cae593c3-50c8-42fe-b5ac-1e7477fb2ef3",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "nb_gold",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_6",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "2f9eb35a-f681-4883-9bea-348fd89e70b4",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "Office365Email1",
+            "type": "Office365Email",
+            "dependsOn": [
+              {
+                "activity": "nb_gate_landing",
+                "dependencyConditions": [
+                  "Failed"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "to": "2401526@rst.edu.eg",
+              "subject": "[🔴 URGENT] Pipeline Alert: Landing Zone Extraction Failed",
+              "body": "<p>Hello Data Engineering Team,</p>\n<p><strong>The Retail Clickstream Pipeline was stopped at Gate 1 (Landing Zone)</strong></p>\n<p><strong>Issue: </strong>The Pipeline did not detect the expected .csv.gz files, or the total file size was below the minimum accepteble threshold. This indecates a potential silent faliure or delay in th upstream Azure Data Factory (ADF) ingestion.</p>\n<p><strong>Action Required:</strong></p>\n<ul>\n  <li>Check ADF pipeline runs</li>\n  <li>Verify the landing Zone shortcut in OneLake.</li>\n  <li>Re-run the Fabric pipeline once the data is available&nbsp;</li>\n</ul>\n<p><br></p>\n<p>System Generated Microsoft Fabric</p>"
+            },
+            "externalReferences": {
+              "connection": "[parameters('MicrosoftOutlook 2401526 (2)')]"
+            }
+          },
+          {
+            "name": "Office365Email1_1",
+            "type": "Office365Email",
+            "dependsOn": [
+              {
+                "activity": "nb_gate_silver",
+                "dependencyConditions": [
+                  "Failed"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "to": "2401526@rst.edu.eg",
+              "subject": "[🔴 URGENT] Pipeline Alert: Silver Data Quality Threshold Exceeded",
+              "body": "<p>Hello Data Engineering Team,</p>\n<p><strong>The Retail Clickstream Pipeline was stopped at Gate 2 (Silver Layer Circuit Breaker)</strong></p>\n<p><strong>Issue</strong>: The processed batch exceeded the maximum allowable limits for Data Quality. Either the Dead Letter Queue (DLQ) rate exceeded 5%, or the Bot/Anomaly rate exceeded 20%.</p>\n<p>The pipeline was automatically halted to prevent corrupted or skewed data from propagating into the Gold layer and Executive Dashboards.</p>\n<p><strong>Action Required:</strong></p>\n<ul>\n  <li>Open the Fabric Pipeline Monitor.</li>\n  <li>Review the Output/Logs of the \"nb_gate_silver\" notebook activity for exact percentages.</li>\n  <li>Investigate the anomalous data batch before resuming.</li>\n</ul>\n<p><br></p>\n<p>System Generated by Microsoft Fabric.</p>"
+            },
+            "externalReferences": {
+              "connection": "[parameters('MicrosoftOutlook 2401526 (2)')]"
+            }
+          },
+          {
+            "name": "Wait_1",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_gate_landing",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "Wait_2",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_bronze_batch_ingest",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "Wait_3",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_bronze_split",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "Wait_4",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_silver_product",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "Wait_5",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_silver_events",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "Wait_6",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_gate_silver",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          },
+          {
+            "name": "nb_bronze_stream_ingest",
+            "type": "TridentNotebook",
+            "dependsOn": [
+              {
+                "activity": "Wait_1",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "policy": {
+              "timeout": "0.12:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false,
+              "secureInput": false
+            },
+            "typeProperties": {
+              "notebookId": "31ca5178-aec3-4db0-8242-ac6ee38c9e7e",
+              "workspaceId": "0aee7168-17b5-4682-81a9-c1351ce314df"
+            }
+          },
+          {
+            "name": "Wait_7",
+            "type": "Wait",
+            "dependsOn": [
+              {
+                "activity": "nb_bronze_stream_ingest",
+                "dependencyConditions": [
+                  "Succeeded"
+                ]
+              }
+            ],
+            "typeProperties": {
+              "waitTimeInSeconds": 60
+            }
+          }
+        ],
+        "lastModifiedByObjectId": "8e78fada-1f82-47a7-88f9-280aee157bb4",
+        "lastPublishTime": "2026-10-29T12:25:48Z"
+      },
+      "dependsOn": []
+    }
+  ]
+}
