@@ -187,13 +187,15 @@ streamlit run app/dashboard.py --server.port 8501
 * **Access Dashboard**: Open your browser to `http://localhost:8501`
 
 ---
-## Author
-
-**Youssef Mahmoud Abu Ali** — Machine Learning
-Dataset: REES46 eCommerce Clickstream
 
 ### Key Dashboard Features
 1. **Real-time API Connection Status**: Indicates live connectivity to the FastAPI inference engine.
 2. **User Profile Breakdown**: Displays historical interaction counts (views, carts, purchases), top categories, and preferred brands for any selected user key.
 3. **Interactive Filter Controls**: Dynamic filtering by Department, Category, Brand, and Price range executed directly during top-$K$ inference.
 4. **Latency Tracking**: Displays sub-second inference response times (typically $15-30$ milliseconds per query).
+
+---
+## Author
+
+**Youssef Mahmoud Abu Ali** — Machine Learning
+Dataset: REES46 eCommerce Clickstream
