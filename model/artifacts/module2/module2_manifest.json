@@ -1,0 +1,47 @@
+{
+  "stage": "module2_train",
+  "created_at": "2026-10-29T00:42:18.514128+00:00",
+  "config_fingerprint": "e7e9ed3c238fc12d33a2de98ff71600287bd7299d2be72479b4d9a425df2091d",
+  "module1_config_fingerprint": "30b2b1c6ce2db62c75538a06bdc903ed46f612d509fb2aa2ec80d04d4cffbf64",
+  "seed": 42,
+  "selected_model": "decayed",
+  "tuned": true,
+  "profile_users": 709231,
+  "catalogue_items": 117286,
+  "feature_dimension": 4001,
+  "timings_seconds": {
+    "load": 3.144,
+    "benchmark": 321.912,
+    "tune": 434.817,
+    "rebuild": 11.694
+  },
+  "artifacts": [
+    {
+      "file": "item_matrix.npz",
+      "sha256": "37ccc51d03a813d1b389d41e36ef6d30087378305c1b2a522f205387a41943ad"
+    },
+    {
+      "file": "profiles.npz",
+      "sha256": "3ecbdc54bd625b73a2e8cc6725795c4e755697472b252c9754ed3fd2658971fe"
+    },
+    {
+      "file": "seen_items.npz",
+      "sha256": "3bb7d06516cee1167f70b8882ae865dfd6a4671d0910031bebaa605b8c9ae37a"
+    },
+    {
+      "file": "item_index.parquet",
+      "sha256": "d02b1c71b7fa42385314538c56b1c70ab55643a34bb0ce8ae38848171c270eb7"
+    },
+    {
+      "file": "user_index.parquet",
+      "sha256": "c360db0a2951cae57004b7c177c8552e1bce7cd7e9f9bc90ff02e58d5a5e1ebb"
+    }
+  ],
+  "environment": {
+    "pandas": "3.1.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "scikit_learn": "1.9.1",
+    "optuna": "5.0.0"
+  }
+}

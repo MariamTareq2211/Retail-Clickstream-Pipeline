@@ -1,0 +1,25 @@
+{
+  "tuned": true,
+  "model": "decayed",
+  "metric": "recall",
+  "k": 10,
+  "best_value": 0.031335,
+  "best_trial": 5,
+  "parameters": {
+    "max_features": 4000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 3,
+    "price_weight": 0.050872,
+    "decay_rate_per_hour": 0.0825648,
+    "count_transform": "raw",
+    "event_weights": {
+      "1": 0.218561,
+      "2": 1.76313,
+      "4": 1.0
+    }
+  },
+  "completed_trials": 12
+}

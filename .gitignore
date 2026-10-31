@@ -1,0 +1,41 @@
+# Python Virtual Environments
+venv/
+env/
+.venv/
+
+# Python Cache & Byte-code
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Large Datasets & Raw Logs (Don't push gigabytes to Git)
+data/
+*.csv
+*.parquet
+*.jsonl
+*.gz
+*.zip
+
+# OS Generated Files & Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment Variables & Secrets
+.env
+*.env
+*.log
+
+# Ignore all generated binary artifacts everywhere inside model/artifacts/
+model/artifacts/**/*.npz
+model/artifacts/**/*.joblib
+model/artifacts/**/*.pkl
+model/artifacts/**/*.parquet
+model/artifacts/**/item_matrix*
+model/artifacts/**/profiles*
+model/artifacts/**/seen_items*
+
+# Ignore generated runtime logs in reports
+model/reports/**/*.log
