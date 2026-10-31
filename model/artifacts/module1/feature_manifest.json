@@ -1,0 +1,68 @@
+{
+  "text": {
+    "vocabulary_size": 2228,
+    "train_documents": 106481,
+    "train_documents_with_text": 88794,
+    "zero_text_rows_catalogue": 20467,
+    "zero_text_rows_catalogue_pct": 17.4505,
+    "zero_text_rows_train": 18005,
+    "matrix_nnz": 226265,
+    "most_common_tokens": [
+      "cat1_electronics",
+      "cat1_appliances",
+      "cat1_apparel",
+      "cat2_kitchen",
+      "cat1_computers",
+      "cat2_clocks",
+      "cat2_shoes",
+      "cat1_furniture",
+      "cat1_construction",
+      "cat1_kids",
+      "cat2_audio",
+      "cat2_tools",
+      "cat2_components",
+      "cat2_peripherals",
+      "cat2_environment",
+      "cat2_living_room",
+      "cat3_headphone",
+      "cat1_accessories",
+      "cat3_keds",
+      "brand_casio"
+    ],
+    "tfidf_parameters": {
+      "min_df": 2,
+      "max_features": 5000,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "sublinear_tf": true
+    }
+  },
+  "price": {
+    "impute_value": 77.22,
+    "log_transform": true,
+    "scaler_center": null,
+    "scaler_scale": 1.9040776293318236,
+    "train_products": 106481,
+    "train_missing_prices": 0,
+    "negative_values_clipped": 0,
+    "scaler_centering": false,
+    "raw_min": 0.79,
+    "raw_median": 77.22,
+    "raw_max": 2574.07
+  },
+  "item_matrix": {
+    "items": 117286,
+    "features": 2229,
+    "text_features": 2228,
+    "nnz": 343551,
+    "density": 0.00131412,
+    "zero_rows": 0,
+    "zero_rows_pct": 0.0,
+    "mean_nnz_per_row": 2.9292,
+    "mean_price_share": 0.494994,
+    "price_weight": 0.35,
+    "row_normalised": true
+  }
+}

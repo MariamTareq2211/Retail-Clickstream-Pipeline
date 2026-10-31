@@ -1,0 +1,157 @@
+{
+  "seed": 42,
+  "paths": {
+    "products": "data/dim_product_clean.parquet",
+    "events": "data/fact_events_clean.parquet",
+    "artifacts": "model/artifacts/module1",
+    "reports": "model/reports/module1",
+    "artifacts_module2": "model/artifacts/module2",
+    "reports_module2": "model/reports/module2"
+  },
+  "logging": {
+    "level": "INFO",
+    "file_name": "module1.log"
+  },
+  "data": {
+    "timestamp_column": "event_ts",
+    "required_product_columns": [
+      "product_id",
+      "category_code",
+      "category_level1",
+      "category_level2",
+      "category_level3",
+      "brand",
+      "base_price"
+    ],
+    "required_event_columns": [
+      "user_key",
+      "product_id",
+      "event_type_key"
+    ]
+  },
+  "dedup": {
+    "grain": "timestamped",
+    "count_transform": "raw",
+    "count_cap": 5
+  },
+  "split": {
+    "mode": "quantile",
+    "train_ratio": 0.7,
+    "val_ratio": 0.15,
+    "test_ratio": 0.15,
+    "fixed_cutoffs": null
+  },
+  "text": {
+    "field_prefixes": {
+      "category_level1": "cat1",
+      "category_level2": "cat2",
+      "category_level3": "cat3",
+      "brand": "brand"
+    },
+    "drop_unknown": true,
+    "unknown_value": "Unknown",
+    "include_category_path": false,
+    "tfidf": {
+      "max_features": 5000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "sublinear_tf": true
+    }
+  },
+  "price": {
+    "column": "base_price",
+    "impute_strategy": "median",
+    "constant_value": 0.0,
+    "log_transform": true,
+    "clip_negative": true,
+    "scaler_centering": false
+  },
+  "fusion": {
+    "price_weight": 0.35,
+    "normalize_rows": true
+  },
+  "profiles": {
+    "weights": {
+      "1": 1.0,
+      "2": 3.0,
+      "4": 5.0
+    },
+    "decay": {
+      "enabled": true,
+      "reference": "global",
+      "rate_per_hour": 0.0289
+    }
+  },
+  "benchmark": {
+    "k": 10,
+    "max_users": 30000,
+    "stability_windows": 3
+  },
+  "tuning": {
+    "enabled": true,
+    "n_trials": 20,
+    "max_users": 8000,
+    "timeout_seconds": 1800,
+    "metric": "recall",
+    "study_name": "module2_centroid",
+    "seed_offset": 1,
+    "search_space": {
+      "view_weight": [
+        0.02,
+        1.0
+      ],
+      "cart_weight": [
+        0.05,
+        3.0
+      ],
+      "max_features": [
+        1000,
+        2000,
+        4000
+      ],
+      "ngram_ranges": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "min_df": [
+        1,
+        2,
+        3
+      ],
+      "price_weight": [
+        0.05,
+        1.5
+      ],
+      "decay_rate": [
+        0.0001,
+        0.2
+      ],
+      "count_transforms": [
+        "raw",
+        "log1p",
+        "capped",
+        "none"
+      ]
+    }
+  },
+  "evaluation": {
+    "k_values": [
+      5,
+      10,
+      20
+    ],
+    "min_train_interactions": 1,
+    "min_test_interactions": 1,
+    "scoring_batch_size": 128,
+    "exclude_seen_items": true
+  }
+}
