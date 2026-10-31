@@ -1,0 +1,97 @@
+{
+  "protocol": {
+    "evaluation_split": "test",
+    "k_values": [
+      5,
+      10,
+      20
+    ],
+    "ranking_depth": 20,
+    "export_top_k": 20,
+    "scoring_batch_size": 128,
+    "exclude_seen_items": true,
+    "min_train_interactions": 1,
+    "min_test_interactions": 1,
+    "sampling_seed": 45,
+    "user_selection": {
+      "split": "test",
+      "events": 1237224,
+      "users_in_split": 197717,
+      "users_meeting_min_test": 197717,
+      "users_with_profile": 70738,
+      "cold_start_users_without_profile": 126979,
+      "cold_start_users_pct": 64.2226,
+      "cold_start_events_without_profile": 686513,
+      "cold_start_events_pct": 55.4882,
+      "users_sampled": 70738,
+      "max_users": 0
+    },
+    "cold_start": {
+      "evaluation_items_absent_from_train": 5996,
+      "evaluation_events_absent_from_train": 13755,
+      "evaluation_events_absent_from_train_pct": 1.1118
+    },
+    "seen_filter": {
+      "labels_before": 332357,
+      "labels_after": 285729,
+      "labels_removed_as_seen": 46628,
+      "users_before": 70738,
+      "users_after": 60373,
+      "users_without_unseen_labels": 10365
+    },
+    "scored_users": 60373,
+    "ranked_items": 117286,
+    "profile_features": 4001,
+    "selected_model": "decayed",
+    "tuned_parameters": {
+      "max_features": 4000,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 3,
+      "price_weight": 0.050872,
+      "decay_rate_per_hour": 0.0825648,
+      "count_transform": "raw",
+      "event_weights": {
+        "1": 0.218561,
+        "2": 1.76313,
+        "4": 1.0
+      }
+    }
+  },
+  "metrics": {
+    "by_k": {
+      "5": {
+        "k": 5,
+        "users": 60373,
+        "hit_rate": 0.036622,
+        "recall": 0.017586,
+        "precision": 0.008666,
+        "mrr": 0.019672,
+        "coverage": 0.33362
+      },
+      "10": {
+        "k": 10,
+        "users": 60373,
+        "hit_rate": 0.05688,
+        "recall": 0.028161,
+        "precision": 0.007353,
+        "mrr": 0.022327,
+        "coverage": 0.47582
+      },
+      "20": {
+        "k": 20,
+        "users": 60373,
+        "hit_rate": 0.086711,
+        "recall": 0.04544,
+        "precision": 0.006327,
+        "mrr": 0.024368,
+        "coverage": 0.618224
+      }
+    },
+    "users_scored": 60373,
+    "users_evaluated": 60373,
+    "users_without_relevant_items": 0
+  }
+}

@@ -1,0 +1,167 @@
+# =============================================================================
+# Content-Based Recommendation System - Module 1 configuration
+# -----------------------------------------------------------------------------
+# Every tunable value used by the offline pipeline lives here. Python code must
+# never hardcode a weight, ratio or hyperparameter: it reads it from this file
+# (or from the typed defaults in ``config_schema.py`` when a key is omitted).
+#
+# Paths are relative to the project root unless they start with a drive letter.
+# =============================================================================
+
+seed: 42
+
+paths:
+  products: "data/dim_product_clean.parquet"
+  events: "data/fact_events_clean.parquet"
+  artifacts: "model/artifacts/module1"
+  reports: "model/reports/module1"
+  # Module 2 consumes the artifacts above and writes its own outputs here.
+  artifacts_module2: "model/artifacts/module2"
+  reports_module2: "model/reports/module2"
+  # Module 3 consumes Module 2's artifacts and writes recommendations/metrics.
+  artifacts_module3: "model/artifacts/module3"
+  reports_module3: "model/reports/module3"
+
+logging:
+  level: "INFO"
+  file_name: "module1.log"
+
+data:
+  # Contract with the extraction script: the temporal split is impossible
+  # without a real event timestamp, so Module 1 fails fast if it is missing.
+  timestamp_column: "event_ts"
+  required_product_columns:
+    - product_id
+    - category_code
+    - category_level1
+    - category_level2
+    - category_level3
+    - brand
+    - base_price
+  required_event_columns:
+    - user_key
+    - product_id
+    - event_type_key
+
+dedup:
+  # "timestamped": collapse only rows identical in (user, item, event, timestamp).
+  #                Keeps the per-event time signal required by time decay.
+  # "collapsed":   aggregate the whole user-item-event history (Plan.md 1.1).
+  #                Keeps first/last timestamp but loses per-event decay.
+  grain: "timestamped"
+  # Policy handed to Module 2. "raw" multiplies the profile weight by the repeat
+  # count exactly as the blueprint states; alternatives damp click-spam instead.
+  count_transform: "raw"
+  # Upper bound for the "capped" count transform (tuned in Module 2).
+  count_cap: 5
+
+split:
+  # Global chronological cutoffs (production-like). "fixed_date" uses
+  # ``fixed_cutoffs`` instead of data-driven quantiles.
+  mode: "quantile"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  fixed_cutoffs: null   # e.g. ["2020-06-01T00:00:00Z", "2020-09-01T00:00:00Z"]
+
+text:
+  # Field -> token prefix. Namespacing keeps "unknown" from bridging unrelated
+  # categories and prevents a brand from colliding with a category name.
+  field_prefixes:
+    category_level1: "cat1"
+    category_level2: "cat2"
+    category_level3: "cat3"
+    brand: "brand"
+  # 'Unknown' is a sentinel, not information: dropping it avoids a token that
+  # every incomplete product would share. Set to false only for ablation runs.
+  drop_unknown: true
+  unknown_value: "Unknown"
+  # category_code is fully derivable from the three levels; enabling it only
+  # adds the 103 products that carry a fourth taxonomy segment.
+  include_category_path: false
+  tfidf:
+    max_features: 5000
+    min_df: 2          # int = absolute document frequency, float = proportion
+    ngram_range: [1, 1]
+    sublinear_tf: true
+
+price:
+  column: "base_price"
+  impute_strategy: "median"   # median computed on train-linked products only
+  constant_value: 0.0
+  log_transform: true
+  clip_negative: true
+  # False keeps the price block strictly non-negative: a product priced at the
+  # training median no longer collapses to a zero vector when it has no metadata.
+  scaler_centering: false
+
+fusion:
+  # Relative weight of the single scaled-price dimension against the unit-norm
+  # TF-IDF block. Tuned in Module 2.
+  #
+  # With centring disabled the price block is strictly positive, so its raw
+  # magnitude is much larger than the centred version: weight 1.0 gave price an
+  # 84% share of the row norm, which would turn cosine similarity into a price
+  # matcher. 0.35 restores a text-dominant balance (price share ~0.38, close to
+  # the centred baseline of 0.3756) while keeping every row non-zero.
+  price_weight: 0.35
+  normalize_rows: true
+
+profiles:
+  # Base weight per event type (1 = view, 2 = cart, 4 = purchase). The ratio, not
+  # the absolute scale, drives cosine ranking.
+  weights:
+    1: 1.0
+    2: 3.0
+    4: 5.0
+  decay:
+    enabled: true
+    # "global" ages every interaction against the train cutoff (production-like);
+    # "per_user" ages against each user's own last training interaction.
+    reference: "global"
+    # lambda per hour. 0.0289 ~= ln(2)/24, i.e. a 24-hour half-life, appropriate
+    # for this seven-day interaction window.
+    rate_per_hour: 0.0289
+
+benchmark:
+  k: 10
+  max_users: 15000          # deterministic sample of eligible validation users
+  stability_windows: 3      # validation split into chronological windows
+
+tuning:
+  enabled: true
+  n_trials: 12
+  max_users: 5000           # smaller sample keeps each trial affordable
+  timeout_seconds: 1800
+  metric: "recall"          # recall | hit_rate | mrr
+  study_name: "module2_centroid"
+  seed_offset: 1
+  search_space:
+    view_weight: [0.02, 1.0]
+    cart_weight: [0.05, 3.0]
+    max_features: [1000, 2000, 4000]
+    ngram_ranges: [[1, 1], [1, 2]]
+    min_df: [1, 2, 3]
+    price_weight: [0.05, 1.5]
+    decay_rate: [0.0001, 0.2]
+    count_transforms: ["raw", "log1p", "capped", "none"]
+
+evaluation:
+  k_values: [5, 10, 20]
+  min_train_interactions: 1
+  min_test_interactions: 1
+  scoring_batch_size: 128
+  exclude_seen_items: true
+
+module3:
+  # Hidden-test evaluation split. Use "val" only for ablation runs.
+  evaluation_split: "test"
+  # 0 scores every eligible user; a positive value takes a seeded sample.
+  max_users: 0
+  # Ranking depth written to recommendations.parquet; must cover k_values.
+  export_top_k: 20
+  # Users whose top-K list is exported (0 = every scored user).
+  export_users: 5000
+  compute_diversity: true
+  # Sample used for the O(K^2) intra-list diversity computation.
+  diversity_users: 5000

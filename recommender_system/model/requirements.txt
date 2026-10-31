@@ -1,0 +1,16 @@
+# Pinned to the exact versions verified inside the project virtual environment
+# (Python 3.11.8). Install with:
+#   venv\Scripts\python.exe -m pip install -r model\requirements.txt
+
+pandas==3.1.0
+numpy==2.4.6
+pyarrow==26.0.0
+scipy==1.17.1
+scikit-learn==1.9.1
+optuna==5.0.0
+joblib==1.6.0
+PyYAML==6.0.3
+
+# Reporting and diagnostics
+matplotlib==3.11.2
+seaborn==0.13.2

@@ -1,0 +1,636 @@
+{
+  "protocol": {
+    "k_values": [
+      5,
+      10,
+      20
+    ],
+    "selection_k": 10,
+    "users_sampled": 15000,
+    "users_scored": 12449,
+    "windows": 3,
+    "exclude_seen_items": true,
+    "seen_filter": {
+      "labels_before": 71309,
+      "labels_after": 59591,
+      "labels_removed_as_seen": 11718,
+      "users_before": 15000,
+      "users_after": 12449,
+      "users_without_unseen_labels": 2551
+    },
+    "sampling_seed": 42,
+    "decay_reference_ns": 1570299046000000000
+  },
+  "models": {
+    "unweighted": {
+      "model": "unweighted",
+      "label": "Model 1 - Unweighted Centroid",
+      "description": "Mean of the distinct training item vectors. Ignores event type, repeat count and recency.",
+      "profile": {
+        "model": "unweighted",
+        "model_label": "Model 1 - Unweighted Centroid",
+        "users": 15000,
+        "features": 2229,
+        "interaction_pairs": 127309,
+        "profile_nnz": 116959,
+        "profile_density": 0.0034981008,
+        "mean_items_per_user": 8.4873,
+        "mean_profile_nnz_per_user": 7.7973,
+        "empty_profiles": 0,
+        "mean_total_weight": 8.487267,
+        "max_total_weight": 352.0
+      },
+      "ranking": {
+        "by_k": {
+          "5": {
+            "k": 5,
+            "users": 12449,
+            "hit_rate": 0.031007,
+            "recall": 0.013612,
+            "precision": 0.007406,
+            "mrr": 0.018004,
+            "coverage": 0.128907
+          },
+          "10": {
+            "k": 10,
+            "users": 12449,
+            "hit_rate": 0.050446,
+            "recall": 0.024415,
+            "precision": 0.00645,
+            "mrr": 0.020486,
+            "coverage": 0.210767
+          },
+          "20": {
+            "k": 20,
+            "users": 12449,
+            "hit_rate": 0.078721,
+            "recall": 0.040118,
+            "precision": 0.005675,
+            "mrr": 0.022419,
+            "coverage": 0.315443
+          }
+        },
+        "users_scored": 12449,
+        "users_evaluated": 12449,
+        "users_without_relevant_items": 0
+      },
+      "windows": [
+        {
+          "window": 0,
+          "users_evaluated": 4536,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4536,
+              "hit_rate": 0.031305,
+              "recall": 0.014487,
+              "precision": 0.007407,
+              "mrr": 0.018397,
+              "coverage": 0.0667
+            },
+            "10": {
+              "k": 10,
+              "users": 4536,
+              "hit_rate": 0.048942,
+              "recall": 0.024461,
+              "precision": 0.006305,
+              "mrr": 0.020591,
+              "coverage": 0.115956
+            },
+            "20": {
+              "k": 20,
+              "users": 4536,
+              "hit_rate": 0.078483,
+              "recall": 0.041366,
+              "precision": 0.005765,
+              "mrr": 0.022627,
+              "coverage": 0.186859
+            }
+          }
+        },
+        {
+          "window": 1,
+          "users_evaluated": 4971,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4971,
+              "hit_rate": 0.02937,
+              "recall": 0.013942,
+              "precision": 0.00696,
+              "mrr": 0.016861,
+              "coverage": 0.069079
+            },
+            "10": {
+              "k": 10,
+              "users": 4971,
+              "hit_rate": 0.046872,
+              "recall": 0.023837,
+              "precision": 0.005834,
+              "mrr": 0.019121,
+              "coverage": 0.119545
+            },
+            "20": {
+              "k": 20,
+              "users": 4971,
+              "hit_rate": 0.075236,
+              "recall": 0.040479,
+              "precision": 0.005069,
+              "mrr": 0.021075,
+              "coverage": 0.195028
+            }
+          }
+        },
+        {
+          "window": 2,
+          "users_evaluated": 4961,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4961,
+              "hit_rate": 0.023786,
+              "recall": 0.011592,
+              "precision": 0.005644,
+              "mrr": 0.013415,
+              "coverage": 0.071049
+            },
+            "10": {
+              "k": 10,
+              "users": 4961,
+              "hit_rate": 0.040919,
+              "recall": 0.022136,
+              "precision": 0.00516,
+              "mrr": 0.015616,
+              "coverage": 0.123689
+            },
+            "20": {
+              "k": 20,
+              "users": 4961,
+              "hit_rate": 0.061278,
+              "recall": 0.03456,
+              "precision": 0.004324,
+              "mrr": 0.016967,
+              "coverage": 0.198515
+            }
+          }
+        }
+      ],
+      "stability": {
+        "5": {
+          "hit_rate_mean": 0.028154,
+          "hit_rate_std": 0.003188,
+          "recall_mean": 0.01334,
+          "recall_std": 0.001256,
+          "precision_mean": 0.00667,
+          "precision_std": 0.000748,
+          "mrr_mean": 0.016224,
+          "mrr_std": 0.002083,
+          "coverage_mean": 0.068943,
+          "coverage_std": 0.001778
+        },
+        "10": {
+          "hit_rate_mean": 0.045578,
+          "hit_rate_std": 0.003401,
+          "recall_mean": 0.023478,
+          "recall_std": 0.000983,
+          "precision_mean": 0.005766,
+          "precision_std": 0.00047,
+          "mrr_mean": 0.018443,
+          "mrr_std": 0.002087,
+          "coverage_mean": 0.11973,
+          "coverage_std": 0.00316
+        },
+        "20": {
+          "hit_rate_mean": 0.071666,
+          "hit_rate_std": 0.007464,
+          "recall_mean": 0.038802,
+          "recall_std": 0.003021,
+          "precision_mean": 0.005053,
+          "precision_std": 0.000588,
+          "mrr_mean": 0.020223,
+          "mrr_std": 0.002388,
+          "coverage_mean": 0.193467,
+          "coverage_std": 0.004885
+        }
+      }
+    },
+    "weighted": {
+      "model": "weighted",
+      "label": "Model 2 - Interaction-Weighted Centroid",
+      "description": "Event-type weights (view < cart < purchase) combined with the repeat-count factor; still time-agnostic.",
+      "profile": {
+        "model": "weighted",
+        "model_label": "Model 2 - Interaction-Weighted Centroid",
+        "users": 15000,
+        "features": 2229,
+        "interaction_pairs": 127309,
+        "profile_nnz": 116959,
+        "profile_density": 0.0034981008,
+        "mean_items_per_user": 8.4873,
+        "mean_profile_nnz_per_user": 7.7973,
+        "empty_profiles": 0,
+        "mean_total_weight": 18.694333,
+        "max_total_weight": 1375.0
+      },
+      "ranking": {
+        "by_k": {
+          "5": {
+            "k": 5,
+            "users": 12449,
+            "hit_rate": 0.035746,
+            "recall": 0.016004,
+            "precision": 0.008595,
+            "mrr": 0.019592,
+            "coverage": 0.13369
+          },
+          "10": {
+            "k": 10,
+            "users": 12449,
+            "hit_rate": 0.05647,
+            "recall": 0.026808,
+            "precision": 0.007358,
+            "mrr": 0.022277,
+            "coverage": 0.217707
+          },
+          "20": {
+            "k": 20,
+            "users": 12449,
+            "hit_rate": 0.087477,
+            "recall": 0.044726,
+            "precision": 0.006418,
+            "mrr": 0.024417,
+            "coverage": 0.325623
+          }
+        },
+        "users_scored": 12449,
+        "users_evaluated": 12449,
+        "users_without_relevant_items": 0
+      },
+      "windows": [
+        {
+          "window": 0,
+          "users_evaluated": 4536,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4536,
+              "hit_rate": 0.034832,
+              "recall": 0.016584,
+              "precision": 0.008422,
+              "mrr": 0.019305,
+              "coverage": 0.069394
+            },
+            "10": {
+              "k": 10,
+              "users": 4536,
+              "hit_rate": 0.054894,
+              "recall": 0.027502,
+              "precision": 0.007231,
+              "mrr": 0.02187,
+              "coverage": 0.119972
+            },
+            "20": {
+              "k": 20,
+              "users": 4536,
+              "hit_rate": 0.08664,
+              "recall": 0.045816,
+              "precision": 0.00647,
+              "mrr": 0.024052,
+              "coverage": 0.194124
+            }
+          }
+        },
+        {
+          "window": 1,
+          "users_evaluated": 4971,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4971,
+              "hit_rate": 0.033394,
+              "recall": 0.016128,
+              "precision": 0.008047,
+              "mrr": 0.017994,
+              "coverage": 0.073231
+            },
+            "10": {
+              "k": 10,
+              "users": 4971,
+              "hit_rate": 0.053913,
+              "recall": 0.02726,
+              "precision": 0.00684,
+              "mrr": 0.02069,
+              "coverage": 0.125642
+            },
+            "20": {
+              "k": 20,
+              "users": 4971,
+              "hit_rate": 0.083887,
+              "recall": 0.045478,
+              "precision": 0.005743,
+              "mrr": 0.02277,
+              "coverage": 0.202872
+            }
+          }
+        },
+        {
+          "window": 2,
+          "users_evaluated": 4961,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4961,
+              "hit_rate": 0.02822,
+              "recall": 0.01385,
+              "precision": 0.006571,
+              "mrr": 0.015269,
+              "coverage": 0.072524
+            },
+            "10": {
+              "k": 10,
+              "users": 4961,
+              "hit_rate": 0.044346,
+              "recall": 0.023315,
+              "precision": 0.005604,
+              "mrr": 0.017328,
+              "coverage": 0.125897
+            },
+            "20": {
+              "k": 20,
+              "users": 4961,
+              "hit_rate": 0.069139,
+              "recall": 0.039369,
+              "precision": 0.004908,
+              "mrr": 0.019019,
+              "coverage": 0.201789
+            }
+          }
+        }
+      ],
+      "stability": {
+        "5": {
+          "hit_rate_mean": 0.032149,
+          "hit_rate_std": 0.002839,
+          "recall_mean": 0.015521,
+          "recall_std": 0.001196,
+          "precision_mean": 0.00768,
+          "precision_std": 0.000799,
+          "mrr_mean": 0.017523,
+          "mrr_std": 0.001681,
+          "coverage_mean": 0.071716,
+          "coverage_std": 0.001667
+        },
+        "10": {
+          "hit_rate_mean": 0.051051,
+          "hit_rate_std": 0.004758,
+          "recall_mean": 0.026026,
+          "recall_std": 0.001919,
+          "precision_mean": 0.006558,
+          "precision_std": 0.000693,
+          "mrr_mean": 0.019963,
+          "mrr_std": 0.001924,
+          "coverage_mean": 0.123837,
+          "coverage_std": 0.002735
+        },
+        "20": {
+          "hit_rate_mean": 0.079889,
+          "hit_rate_std": 0.007684,
+          "recall_mean": 0.043554,
+          "recall_std": 0.002963,
+          "precision_mean": 0.005707,
+          "precision_std": 0.000638,
+          "mrr_mean": 0.021947,
+          "mrr_std": 0.002136,
+          "coverage_mean": 0.199595,
+          "coverage_std": 0.003894
+        }
+      }
+    },
+    "decayed": {
+      "model": "decayed",
+      "label": "Model 3 - Time-Decayed Weighted Centroid",
+      "description": "Model 2 multiplied by exponential decay based on event_ts; recent interactions dominate the profile.",
+      "profile": {
+        "model": "decayed",
+        "model_label": "Model 3 - Time-Decayed Weighted Centroid",
+        "users": 15000,
+        "features": 2229,
+        "interaction_pairs": 127309,
+        "profile_nnz": 116959,
+        "profile_density": 0.0034981008,
+        "mean_items_per_user": 8.4873,
+        "mean_profile_nnz_per_user": 7.7973,
+        "empty_profiles": 0,
+        "mean_total_weight": 7.386348,
+        "max_total_weight": 423.962374
+      },
+      "ranking": {
+        "by_k": {
+          "5": {
+            "k": 5,
+            "users": 12449,
+            "hit_rate": 0.036549,
+            "recall": 0.016295,
+            "precision": 0.008772,
+            "mrr": 0.020371,
+            "coverage": 0.137007
+          },
+          "10": {
+            "k": 10,
+            "users": 12449,
+            "hit_rate": 0.059041,
+            "recall": 0.028278,
+            "precision": 0.007663,
+            "mrr": 0.023306,
+            "coverage": 0.223462
+          },
+          "20": {
+            "k": 20,
+            "users": 12449,
+            "hit_rate": 0.092056,
+            "recall": 0.046796,
+            "precision": 0.006695,
+            "mrr": 0.025555,
+            "coverage": 0.334635
+          }
+        },
+        "users_scored": 12449,
+        "users_evaluated": 12449,
+        "users_without_relevant_items": 0
+      },
+      "windows": [
+        {
+          "window": 0,
+          "users_evaluated": 4536,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4536,
+              "hit_rate": 0.035273,
+              "recall": 0.017865,
+              "precision": 0.00851,
+              "mrr": 0.019838,
+              "coverage": 0.070452
+            },
+            "10": {
+              "k": 10,
+              "users": 4536,
+              "hit_rate": 0.057099,
+              "recall": 0.029752,
+              "precision": 0.007451,
+              "mrr": 0.022683,
+              "coverage": 0.122223
+            },
+            "20": {
+              "k": 20,
+              "users": 4536,
+              "hit_rate": 0.092152,
+              "recall": 0.049041,
+              "precision": 0.006702,
+              "mrr": 0.025078,
+              "coverage": 0.1986
+            }
+          }
+        },
+        {
+          "window": 1,
+          "users_evaluated": 4971,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4971,
+              "hit_rate": 0.034601,
+              "recall": 0.015899,
+              "precision": 0.008208,
+              "mrr": 0.018598,
+              "coverage": 0.074433
+            },
+            "10": {
+              "k": 10,
+              "users": 4971,
+              "hit_rate": 0.056528,
+              "recall": 0.028823,
+              "precision": 0.007182,
+              "mrr": 0.021492,
+              "coverage": 0.128182
+            },
+            "20": {
+              "k": 20,
+              "users": 4971,
+              "hit_rate": 0.087306,
+              "recall": 0.046733,
+              "precision": 0.005975,
+              "mrr": 0.023583,
+              "coverage": 0.20676
+            }
+          }
+        },
+        {
+          "window": 2,
+          "users_evaluated": 4961,
+          "by_k": {
+            "5": {
+              "k": 5,
+              "users": 4961,
+              "hit_rate": 0.028825,
+              "recall": 0.013893,
+              "precision": 0.006813,
+              "mrr": 0.01619,
+              "coverage": 0.074288
+            },
+            "10": {
+              "k": 10,
+              "users": 4961,
+              "hit_rate": 0.046765,
+              "recall": 0.024198,
+              "precision": 0.005906,
+              "mrr": 0.018468,
+              "coverage": 0.12831
+            },
+            "20": {
+              "k": 20,
+              "users": 4961,
+              "hit_rate": 0.072566,
+              "recall": 0.041501,
+              "precision": 0.00518,
+              "mrr": 0.020211,
+              "coverage": 0.204892
+            }
+          }
+        }
+      ],
+      "stability": {
+        "5": {
+          "hit_rate_mean": 0.0329,
+          "hit_rate_std": 0.002894,
+          "recall_mean": 0.015886,
+          "recall_std": 0.001622,
+          "precision_mean": 0.007844,
+          "precision_std": 0.000739,
+          "mrr_mean": 0.018209,
+          "mrr_std": 0.001515,
+          "coverage_mean": 0.073058,
+          "coverage_std": 0.001843
+        },
+        "10": {
+          "hit_rate_mean": 0.053464,
+          "hit_rate_std": 0.004743,
+          "recall_mean": 0.027591,
+          "recall_std": 0.002429,
+          "precision_mean": 0.006846,
+          "precision_std": 0.000674,
+          "mrr_mean": 0.020881,
+          "mrr_std": 0.001774,
+          "coverage_mean": 0.126238,
+          "coverage_std": 0.00284
+        },
+        "20": {
+          "hit_rate_mean": 0.084008,
+          "hit_rate_std": 0.008329,
+          "recall_mean": 0.045758,
+          "recall_std": 0.003154,
+          "precision_mean": 0.005952,
+          "precision_std": 0.000622,
+          "mrr_mean": 0.022957,
+          "mrr_std": 0.002036,
+          "coverage_mean": 0.203417,
+          "coverage_std": 0.003491
+        }
+      }
+    }
+  },
+  "selection": {
+    "criterion": "max mean Recall@K, then mean HitRate@K, then min Recall std",
+    "k": 10,
+    "ranking": [
+      {
+        "model": "decayed",
+        "label": "Model 3 - Time-Decayed Weighted Centroid",
+        "recall_mean": 0.027591,
+        "recall_std": 0.002429,
+        "hit_rate_mean": 0.053464,
+        "overall_recall": 0.028278,
+        "overall_hit_rate": 0.059041
+      },
+      {
+        "model": "weighted",
+        "label": "Model 2 - Interaction-Weighted Centroid",
+        "recall_mean": 0.026026,
+        "recall_std": 0.001919,
+        "hit_rate_mean": 0.051051,
+        "overall_recall": 0.026808,
+        "overall_hit_rate": 0.05647
+      },
+      {
+        "model": "unweighted",
+        "label": "Model 1 - Unweighted Centroid",
+        "recall_mean": 0.023478,
+        "recall_std": 0.000983,
+        "hit_rate_mean": 0.045578,
+        "overall_recall": 0.024415,
+        "overall_hit_rate": 0.050446
+      }
+    ],
+    "winner": "decayed"
+  }
+}
