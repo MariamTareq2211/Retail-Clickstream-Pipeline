@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+1. event_time: وقت وقوع الحدث بالثانية (UTC).
+2. event_type: نوع الحدث (view, cart, remove_from_cart, purchase).
+3. product_id: المعرف الرقمي للمنتج.
+4. category_id: المعرف الرقمي للفئة.
+5. category_code: اسم الفئة مقسم بالنقط مثل computers.network.router.
+6. brand: اسم الماركة/البراند.
+7. price: سعر المنتج لحظة وقوع الحدث.
+8. user_id: المعرف الرقمي الدائم للعميل.
+9. user_session: معرف الجلسة/الزيارة الحالية.
+10. platform: المنصة (web أو mobile) - ثابته لكل جلسة.
+11. marketing_channel: القناة التسويقية (organic, paid, email, social) - ثابته لكل جلسة.
+12. ingestion_time: وقت وصول الحدث للـ Pipeline - يُستخدم لقياس الـ Ingestion Delay والـ Late Events.
+--------------------------------------------------------------------------------
